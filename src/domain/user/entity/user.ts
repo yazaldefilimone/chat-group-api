@@ -3,7 +3,7 @@ import { isValidName, isValidEmail, isValidPassword } from '@/shared/validators'
 import { Either, left, right } from '@/shared/error-handler/either';
 
 import { v4 as uuid } from 'uuid';
-import { InvalidParamsError } from '@/domain/errors/InvalidParamsError';
+import { InvalidParamsError } from '@/domain/errors';
 
 export class User {
   public nameIsValid(name: string): Either<InvalidParamsError, string> {

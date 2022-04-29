@@ -1,4 +1,4 @@
-import { InvalidParamsError } from '@/domain/errors/InvalidParamsError';
+import { InvalidParamsError } from '@/domain/errors';
 import { Either } from '@/shared/error-handler/either';
 
 export type user = {
