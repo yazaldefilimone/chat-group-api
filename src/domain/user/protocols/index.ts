@@ -1,4 +1,4 @@
-import { InvalidParamsError } from '@/domain/errors';
+import { AlreadyExistsError, InvalidParamsError } from '@/domain/errors';
 import { Either } from '@/shared/error-handler/either';
 
 export type user = {
@@ -20,7 +20,8 @@ export type userCreate = {
   password: string;
   created_at: string;
 };
-type CreateUserError = InvalidParamsError;
+type CreateUserError = InvalidParamsError | AlreadyExistsError;
 type CreateUserSucessFully = userCreate;
 
-export type ResponseBuildUser = Either<CreateUserError, CreateUserSucessFully>;
+export type ResponseBuildUser = Either<InvalidParamsError, CreateUserSucessFully>;
+export type ResponseCreateUser = Either<CreateUserError, CreateUserSucessFully>;
