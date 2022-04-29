@@ -1,4 +1,4 @@
-import { ResponseBuildUser, user } from './protocols';
+import { ResponseBuildUser, user } from '../protocols';
 import { isValidName, isValidEmail, isValidPassword } from '@/shared/validators';
 import { Either, left, right } from '@/shared/error-handler/either';
 
