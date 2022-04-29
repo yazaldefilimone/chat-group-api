@@ -1,9 +1,9 @@
-export interface Encoder {
-  encode: (data: Encoder.Input<{ value: string; salt?: number }>) => Encoder.Output<string>;
-  decode: (data: Encoder.Input<{ value: string; hash: string }>) => Encoder.Output<boolean>;
+export interface IEncoder {
+  encode: (data: IEncoder.Input<{ value: string; salt?: number }>) => IEncoder.Output<string>;
+  decode: (data: IEncoder.Input<{ value: string; hash: string }>) => IEncoder.Output<boolean>;
 }
 
-export namespace Encoder {
+export namespace IEncoder {
   export type Input<T> = Promise<T>;
   export type Output<T> = Promise<T>;
 }
