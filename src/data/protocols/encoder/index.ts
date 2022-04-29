@@ -4,6 +4,6 @@ export interface IEncoder {
 }
 
 export namespace IEncoder {
-  export type Input<T> = Promise<T>;
+  export type Input<T> = T;
   export type Output<T> = Promise<T>;
 }
