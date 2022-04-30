@@ -21,7 +21,7 @@ export type userCreate = {
   created_at: string;
 };
 type CreateUserError = InvalidParamsError | AlreadyExistsError;
-type CreateUserSucessFully = userCreate;
+type CreateUserSuccessFully = userCreate;
 
-export type ResponseBuildUser = Either<InvalidParamsError, CreateUserSucessFully>;
-export type ResponseCreateUser = Either<CreateUserError, CreateUserSucessFully>;
+export type ResponseBuildUser = Either<InvalidParamsError, CreateUserSuccessFully>;
+export type ResponseCreateUser = Either<CreateUserError, CreateUserSuccessFully>;
