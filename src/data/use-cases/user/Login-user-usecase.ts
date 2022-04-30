@@ -4,6 +4,7 @@ import { InvalidCredentials, InvalidParamsError, NotFoundError } from '@/domain/
 import { User } from '@/domain/user/entity/user';
 import { ILoginUserUseCase } from '@/domain/user/use-cases';
 import { left, right } from '@/shared/error-handler/either';
+import { signToken } from '@/shared/security';
 
 export class LoginUserUseCase implements ILoginUserUseCase {
   private readonly userRepository: IUserRepository;
@@ -25,7 +26,10 @@ export class LoginUserUseCase implements ILoginUserUseCase {
     const isValidPassword = await this.encoder.decode({ value: data.password, hash: user.password });
 
     if (!isValidPassword) return left(new InvalidCredentials('password'));
-
-    return right(user);
+    const token = signToken({ userId: user.id });
+    return right({
+      user,
+      token,
+    });
   }
 }
