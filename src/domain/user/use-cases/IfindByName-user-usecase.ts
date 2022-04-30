@@ -1,6 +1,6 @@
-import { InvalidParamsError } from '@/domain/errors';
+import { InvalidParamsError, NotFoundError } from '@/domain/errors';
 import { Either } from '@/shared/error-handler/either';
-import { ResponseUser } from '../protocols';
+import { ResponseUser, userCreate } from '../protocols';
 
 export interface IFindByNameUserUseCase {
   perform: (data: IFindByNameUserUseCase.Input) => IFindByNameUserUseCase.Output;
@@ -8,5 +8,5 @@ export interface IFindByNameUserUseCase {
 
 export namespace IFindByNameUserUseCase {
   export type Input = { name: string };
-  export type Output = Promise<Either<InvalidParamsError, ResponseUser[]>>;
+  export type Output = Promise<Either<InvalidParamsError | NotFoundError, Omit<userCreate, 'password'>[]>>;
 }
