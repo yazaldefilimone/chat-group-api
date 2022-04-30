@@ -9,19 +9,19 @@ Am Simple chat created using NodeJs and socket.io.
   - [x] Email, Name, Password.
   - [x] O usuário não pode criar outro usuário com o mesmo email.
 
-- [ ] Login de usuário usando o email e senha.
+- [x] Login de usuário usando o email e senha.
 
-  - [ ] Gerar token de autenticação.
+  - [x] Gerar token de autenticação.
 
 - [ ] Edição de usuário:
 
   - [ ] O usuário pode adicionar uma foto de perfil.
   - [ ] O usuário pode editar o nome.
 
-- [ ] Busca de usuários:
+- [x] Busca de usuários:
 
-  - [ ] Buscar por nome.
-  - [ ] Buscar por email.
+  - [x] Buscar por nome.
+  - [x] Buscar todos os usuários.
 
 - [ ] Criação de Sala de chat:
 
