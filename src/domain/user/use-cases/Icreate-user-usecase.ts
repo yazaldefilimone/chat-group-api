@@ -1,4 +1,4 @@
-import { ResponseCreateUser, user } from '../protocols';
+import { ResponseUser, user } from '../protocols';
 
 export interface ICreateUserUseCase {
   perform: (data: ICreateUserUseCase.Input) => ICreateUserUseCase.Output;
@@ -6,5 +6,5 @@ export interface ICreateUserUseCase {
 
 export namespace ICreateUserUseCase {
   export type Input = user;
-  export type Output = Promise<ResponseCreateUser>;
+  export type Output = Promise<ResponseUser>;
 }

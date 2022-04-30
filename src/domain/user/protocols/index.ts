@@ -24,4 +24,4 @@ type CreateUserError = InvalidParamsError | AlreadyExistsError;
 type CreateUserSuccessFully = userCreate;
 
 export type ResponseBuildUser = Either<InvalidParamsError, CreateUserSuccessFully>;
-export type ResponseCreateUser = Either<CreateUserError, CreateUserSuccessFully>;
+export type ResponseUser = Either<CreateUserError, CreateUserSuccessFully>;
