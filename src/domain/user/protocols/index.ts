@@ -20,8 +20,12 @@ export type userCreate = {
   password: string;
   created_at: string;
 };
+export type userLogin = {
+  token: string;
+  user: Omit<userCreate, 'password'>;
+};
 type CreateUserError = InvalidParamsError | AlreadyExistsError | NotFoundError | InvalidCredentials;
-type CreateUserSuccessFully = userCreate;
 
-export type ResponseBuildUser = Either<InvalidParamsError, CreateUserSuccessFully>;
-export type ResponseUser = Either<CreateUserError, CreateUserSuccessFully>;
+export type ResponseBuildUser = Either<InvalidParamsError, userCreate>;
+export type ResponseUser = Either<CreateUserError, userCreate>;
+export type ResponseLogin = Either<CreateUserError, userLogin>;
