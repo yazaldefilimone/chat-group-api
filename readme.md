@@ -4,17 +4,19 @@ Am Simple chat created using NodeJs and socket.io.
 
 ## To-do
 
-- [ ] Criação de usuário:
+- [x] Criação de usuário:
 
-  - [ ] Email, Name, Password.
-  - [ ] O usuário não pode criar outro usuário com o mesmo email.
-  - [ ] Gerar token de autenticação.
+  - [x] Email, Name, Password.
+  - [x] O usuário não pode criar outro usuário com o mesmo email.
 
 - [ ] Login de usuário usando o email e senha.
-- [ ] Edicao de usuário:
+
+  - [ ] Gerar token de autenticação.
+
+- [ ] Edição de usuário:
 
   - [ ] O usuário pode adicionar uma foto de perfil.
-  - [ ] O usuario pode editar o nome.
+  - [ ] O usuário pode editar o nome.
 
 - [ ] Busca de usuários:
 
@@ -23,11 +25,11 @@ Am Simple chat created using NodeJs and socket.io.
 
 - [ ] Criação de Sala de chat:
 
-  - [ ] O usário pode criar uma sala com name, description.
-  - [ ] O usuário pode confidar outros para sala.
-  - [ ] O apenas usuários logado podem acessar uma sala.
+  - [ ] O usuário pode criar uma sala com name, description.
+  - [ ] O usuário pode convidar outros para sala.
+  - [ ] O apenas usuários que fez o login podem acessar uma sala.
 
-- [ ] Envio de messagens:
+- [ ] Envio de mensagens:
 
-  - [ ] Apenas usuários autenticados podem enviar messagens.
-  - [ ] A messagem deve conter content, name, photo,timestamp.
+  - [ ] Apenas usuários autenticados podem enviar mensagens.
+  - [ ] A mensagem deve conter content, name, photo,timestamp.
