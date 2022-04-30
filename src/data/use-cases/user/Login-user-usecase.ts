@@ -28,7 +28,12 @@ export class LoginUserUseCase implements ILoginUserUseCase {
     if (!isValidPassword) return left(new InvalidCredentials('password'));
     const token = signToken({ userId: user.id });
     return right({
-      user,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        created_at: user.created_at,
+      },
       token,
     });
   }
