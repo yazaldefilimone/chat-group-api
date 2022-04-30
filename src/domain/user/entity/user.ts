@@ -25,7 +25,7 @@ export class User {
     const validUser = {
       name: this.nameIsValid(name),
       email: this.emailIsValid(email),
-      password: this.nameIsValid(password),
+      password: this.passwordIsValid(password),
     };
 
     if (validUser.name.isLeft()) {
