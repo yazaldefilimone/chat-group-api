@@ -26,7 +26,11 @@ export class CreateUserUseCase implements ICreateUserUseCase {
     userBuild.value.password = await this.encoder.encode({ value: userBuild.value.password });
 
     const user = await this.userRepository.add(userBuild.value);
-
-    return right(user);
+    return right({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      created_at: user.created_at,
+    });
   }
 }
