@@ -27,5 +27,5 @@ export type userLogin = {
 type CreateUserError = InvalidParamsError | AlreadyExistsError | NotFoundError | InvalidCredentials;
 
 export type ResponseBuildUser = Either<InvalidParamsError, userCreate>;
-export type ResponseUser = Either<CreateUserError, userCreate>;
+export type ResponseUser = Either<CreateUserError, Omit<userCreate, 'password'>>;
 export type ResponseLogin = Either<CreateUserError, userLogin>;
