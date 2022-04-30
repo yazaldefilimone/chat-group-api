@@ -1,5 +1,7 @@
 # Chat Group Api Rest
 
+Am Simple chat created using NodeJs and socket.io.
+
 ## To-do
 
 - [ ] Criação de usuário:

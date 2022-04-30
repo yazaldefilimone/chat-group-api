@@ -21,7 +21,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 
     const isExist = await this.userRepository.findByEmail({ email: userBuild.value.email });
 
-    if (!isExist) return left(new AlreadyExistsError('user'));
+    if (isExist) return left(new AlreadyExistsError('user'));
 
     userBuild.value.password = await this.encoder.encode({ value: userBuild.value.password });
 
