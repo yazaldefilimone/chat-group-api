@@ -1,3 +1,4 @@
+import './settings/alias';
 import { env } from '@/shared/env';
 import { app } from './settings';
 
