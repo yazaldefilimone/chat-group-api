@@ -7,7 +7,7 @@ import { left, right } from '@/shared/error-handler/either';
 
 export class FindByNameUserUseCase implements IFindByNameUserUseCase {
   private readonly userRepository: IUserRepository;
-  constructor(userRepository: IUserRepository, encoder: IEncoder) {
+  constructor(userRepository: IUserRepository) {
     this.userRepository = userRepository;
   }
 
