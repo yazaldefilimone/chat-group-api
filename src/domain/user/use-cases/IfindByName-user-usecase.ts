@@ -1,4 +1,5 @@
 import { InvalidParamsError } from '@/domain/errors';
+import { Either } from '@/shared/error-handler/either';
 import { ResponseUser } from '../protocols';
 
 export interface IFindByNameUserUseCase {
@@ -7,5 +8,5 @@ export interface IFindByNameUserUseCase {
 
 export namespace IFindByNameUserUseCase {
   export type Input = { name: string };
-  export type Output = Promise<ResponseUser[] | InvalidParamsError>;
+  export type Output = Promise<Either<InvalidParamsError, ResponseUser[]>>;
 }
