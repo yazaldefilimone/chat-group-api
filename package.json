@@ -5,6 +5,12 @@
   "main": "index.ts",
   "author": "Yazalde Filimone ",
   "license": "MIT",
+  "scripts": {
+    "start": "node -r dotenv/config dist",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig-build.json",
+    "dev": "npx ts-node-dev --respawn --exit-child --watch src src/main/server.ts"
+  },
   "dependencies": {
     "@prisma/client": "3.13.0",
     "bcryptjs": "^2.4.3",
