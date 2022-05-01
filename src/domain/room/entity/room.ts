@@ -1,4 +1,4 @@
-import { ResponseBuildRoom, room } from '../protocols';
+import { ResponseBuildRoom, room, roomInput } from '../protocols';
 import { isValidName, isValidDescription } from '@/shared/validators';
 import { Either, left, right } from '@/shared/error-handler/either';
 
@@ -16,7 +16,7 @@ export class Room {
     return isValid ? right(description) : left(new InvalidParamsError('description'));
   }
 
-  public build({ name, description }: room): ResponseBuildRoom {
+  public build({ name, description, userId }: roomInput): ResponseBuildRoom {
     const validRoom = {
       name: this.nameIsValid(name),
       description: this.descriptionIsValid(description),
@@ -34,6 +34,7 @@ export class Room {
       id: uuid(),
       name: validRoom.name.value,
       description: validRoom.description.value,
+      userId,
       created_at: new Date().toISOString(),
     });
   }

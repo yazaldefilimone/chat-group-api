@@ -5,6 +5,11 @@ export type room = {
   name: string;
   description: string;
 };
+export type roomInput = {
+  name: string;
+  description: string;
+  userId: string;
+};
 export type roomSimples = {
   id?: string;
   name: string;
@@ -15,6 +20,7 @@ export type roomCreate = {
   id: string;
   name: string;
   description: string;
+  userId: string;
   created_at: string;
 };
 
