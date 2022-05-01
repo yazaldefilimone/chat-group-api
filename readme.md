@@ -23,13 +23,13 @@ Am Simple chat created using NodeJs and socket.io.
   - [x] Buscar por nome.
   - [x] Buscar todos os usuários.
 
-- [ ] Criação de Sala de chat:
+- [x] Criação de Sala de chat:
 
-  - [ ] O usuário pode criar uma sala com name, description.
+  - [x] O usuário pode criar uma sala com name, description.
   - [ ] O usuário pode convidar outros para sala.
-  - [ ] O apenas usuários que fez o login podem acessar uma sala.
+  - [x] O apenas usuários que fez o login podem acessar uma sala.
 
-- [ ] Envio de mensagens:
+- [x] Envio de mensagens:
 
   - [ ] Apenas usuários autenticados podem enviar mensagens.
   - [ ] A mensagem deve conter content, name, photo,timestamp.
