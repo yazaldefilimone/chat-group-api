@@ -1,6 +1,7 @@
 import { IRoomRepository } from '@/data/repositories/room';
 import { roomRepo, roomRepoAll } from '@/data/repositories/room/protocols';
-import { PrismaClient } from '@prisma/client';
+import { userRepo } from '@/data/repositories/user/protocols';
+import { Prisma, prisma, PrismaClient } from '@prisma/client';
 import { prismaClient } from '../settings';
 
 export class PrismaRoomRepository implements IRoomRepository {
@@ -20,22 +21,22 @@ export class PrismaRoomRepository implements IRoomRepository {
     return room;
   }
   async findByName({ name }: { name: string }): IRoomRepository.Output<roomRepo | null> {
-    const isUser = await this.prismaClient.room.findFirst({
+    const isRoom = await this.prismaClient.room.findFirst({
       where: { name },
     });
 
-    return isUser;
+    return isRoom;
   }
 
   async findByNames({ name }: { name: string }): IRoomRepository.Output<roomRepo[] | null> {
-    const isUser = await this.prismaClient.room.findMany({
+    const isRoom = await this.prismaClient.room.findMany({
       where: { name },
     });
 
-    return isUser;
+    return isRoom;
   }
   async findById({ id }: { id: string }): IRoomRepository.Output<roomRepoAll | null> {
-    const isUser = await this.prismaClient.room.findFirst({
+    const isRoom = await this.prismaClient.room.findFirst({
       where: { id },
       include: {
         users: true,
@@ -43,7 +44,7 @@ export class PrismaRoomRepository implements IRoomRepository {
       },
     });
 
-    return isUser;
+    return isRoom;
   }
 
   async delete({ id }: { id: string }): IRoomRepository.Output<void> {
@@ -52,7 +53,21 @@ export class PrismaRoomRepository implements IRoomRepository {
     });
   }
   async findAll(): IRoomRepository.Output<roomRepo[]> {
-    const users = await this.prismaClient.room.findMany({});
+    const rooms = await this.prismaClient.room.findMany({});
+    return rooms;
+  }
+
+  async findByUser({ userId, roomId }: { roomId: string; userId: string }): IRoomRepository.Output<userRepo[] | undefined> {
+    const isRoom = await this.prismaClient.room.findFirst({
+      where: { id: roomId },
+      include: {
+        users: true,
+        mensagens: true,
+      },
+    });
+
+    const users = isRoom?.users.filter((user) => user.id === userId);
+
     return users;
   }
 }
