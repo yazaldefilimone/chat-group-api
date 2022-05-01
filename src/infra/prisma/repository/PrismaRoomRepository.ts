@@ -34,7 +34,7 @@ export class PrismaRoomRepository implements IRoomRepository {
 
     return isUser;
   }
-  async findById({ id }: { id: string }): IRoomRepository.Output<roomRepo | null> {
+  async findById({ id }: { id: string }): IRoomRepository.Output<roomRepoAll | null> {
     const isUser = await this.prismaClient.room.findFirst({
       where: { id },
       include: {
