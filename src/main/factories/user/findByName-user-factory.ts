@@ -1,5 +1,4 @@
 import { FindByNameUserUseCase } from '@/data/use-cases/user';
-import { Encoder } from '@/infra/encoder';
 import { PrismaUserRepository } from '@/infra/prisma/repository';
 import { FindByNameUserController } from '@/presentation/controllers/user';
 
