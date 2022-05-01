@@ -16,8 +16,8 @@ const nameSchema = Joi.object({
 const passwordSchema = Joi.object({
   password: Joi.string().required().regex(new RegExp(passwordRegex)).min(8).max(30),
 });
-const bioSchema = Joi.object({
-  bio: Joi.string().required().min(0).max(200),
+const descriptionSchema = Joi.object({
+  description: Joi.string().required().min(0).max(200),
 });
 
 export function isValidEmail(email: string): boolean {
@@ -38,8 +38,8 @@ export function isValidPassword(password: string): boolean {
   return result.error ? false : true;
 }
 
-export function isValidBio(bio: string): boolean {
-  if (!bio) return false;
-  const result = bioSchema.validate({ bio });
+export function isValidDescription(description: string): boolean {
+  if (!description) return false;
+  const result = descriptionSchema.validate({ description });
   return result.error ? false : true;
 }
