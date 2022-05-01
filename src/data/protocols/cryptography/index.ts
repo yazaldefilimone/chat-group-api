@@ -1,6 +1,6 @@
 export interface ICryptography {
   encrypt: (data: ICryptography.Input) => ICryptography.Output;
-  decrypt: boolean;
+  decrypt: (data: ICryptography.Input) => ICryptography.Output;
 }
 export namespace ICryptography {
   export type Input = {
