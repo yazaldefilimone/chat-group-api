@@ -1,4 +1,5 @@
 import { AlreadyExistsError, InvalidCredentials, InvalidParamsError, NotFoundError } from '@/domain/errors';
+import { mensagemCreate } from '@/domain/mensagem/protocols';
 import { Either } from '@/shared/error-handler/either';
 
 export type room = {
@@ -33,7 +34,6 @@ export type TypeRoom = {
     email: string;
     created_at: string;
   }[];
-  mensagens: any[];
 };
 
 type CreateRoomError = InvalidParamsError | AlreadyExistsError | NotFoundError;
