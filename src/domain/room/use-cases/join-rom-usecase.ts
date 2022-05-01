@@ -10,5 +10,5 @@ export namespace IJoinRoomUseCase {
     roomId: string;
   };
 
-  export type Output = Promise<ResponseRoom>;
+  export type Output = Promise<void>;
 }

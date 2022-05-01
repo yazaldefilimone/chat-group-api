@@ -13,6 +13,7 @@ export class PrismaUserRepository implements IUserRepository {
       data,
       include: {
         mensagens: true,
+        rooms: true,
       },
     });
 
@@ -23,6 +24,7 @@ export class PrismaUserRepository implements IUserRepository {
       where: { name },
       include: {
         mensagens: true,
+        rooms: true,
       },
     });
 
@@ -31,6 +33,10 @@ export class PrismaUserRepository implements IUserRepository {
   async findById({ id }: { id: string }): IUserRepository.Output<userRepo | null> {
     const isUser = await this.prismaClient.user.findFirst({
       where: { id },
+      include: {
+        mensagens: true,
+        rooms: true,
+      },
     });
 
     return isUser;
@@ -38,6 +44,10 @@ export class PrismaUserRepository implements IUserRepository {
   async findByEmail({ email }: { email: string }): IUserRepository.Output<userRepo | null> {
     const isUser = await this.prismaClient.user.findFirst({
       where: { email },
+      include: {
+        mensagens: true,
+        rooms: true,
+      },
     });
 
     return isUser;
@@ -48,7 +58,23 @@ export class PrismaUserRepository implements IUserRepository {
     });
   }
   async findAll(): IUserRepository.Output<userRepo[]> {
-    const users = await this.prismaClient.user.findMany();
+    const users = await this.prismaClient.user.findMany({
+      include: {
+        mensagens: true,
+        rooms: {
+          select: {
+            room: {
+              select: {
+                id: true,
+                name: true,
+                description: true,
+                created_at: true,
+              },
+            },
+          },
+        },
+      },
+    });
     return users;
   }
   async update(data: userRepo): IUserRepository.Output<userRepo> {

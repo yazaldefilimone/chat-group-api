@@ -10,7 +10,7 @@ export class PrismaRoomRepository implements IRoomRepository {
     this.prismaClient = prismaClient;
   }
   async add(data: IRoomRepository.Input): IRoomRepository.Output<roomRepoAll> {
-    const room = await this.prismaClient.room.create({
+    const room: any = await this.prismaClient.room.create({
       data,
       include: {
         mensagens: true,
@@ -36,11 +36,35 @@ export class PrismaRoomRepository implements IRoomRepository {
     return isRoom;
   }
   async findById({ id }: { id: string }): IRoomRepository.Output<roomRepoAll | null> {
-    const isRoom = await this.prismaClient.room.findFirst({
+    const isRoom: any = await this.prismaClient.room.findFirst({
       where: { id },
       include: {
-        users: true,
-        mensagens: true,
+        users: {
+          select: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+                created_at: true,
+              },
+            },
+          },
+        },
+        mensagens: {
+          select: {
+            id: true,
+            content: true,
+            created_at: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+              },
+            },
+          },
+        },
       },
     });
 
@@ -57,17 +81,12 @@ export class PrismaRoomRepository implements IRoomRepository {
     return rooms;
   }
 
-  async findByUser({ userId, roomId }: { roomId: string; userId: string }): IRoomRepository.Output<userRepo[] | undefined> {
-    const isRoom = await this.prismaClient.room.findFirst({
-      where: { id: roomId },
-      include: {
-        users: true,
-        mensagens: true,
+  async addUser({ userId, roomId }: { roomId: string; userId: string }): IRoomRepository.Output<void> {
+    const isRoom = await this.prismaClient.relationship.create({
+      data: {
+        userId,
+        roomId,
       },
     });
-
-    const users = isRoom?.users.filter((user) => user.id === userId);
-
-    return users;
   }
 }

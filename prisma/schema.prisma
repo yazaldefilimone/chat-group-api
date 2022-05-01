@@ -11,13 +11,13 @@ datasource db {
 }
 
 model User {
-  id         String     @id
+  id         String         @id
   name       String
-  email      String     @unique
+  email      String         @unique
   password   String
   created_at String
   mensagens  Mensagem[]
-  rooms      Room[]
+  rooms      Relationship[] @relation("users")
 
   @@map("users")
 }
@@ -26,21 +26,30 @@ model Mensagem {
   id         String @id
   content    String
   created_at String
-  Room       Room   @relation(fields: [roomId], references: [id])
+  Room       Room   @relation(fields: [roomId], references: [id], onDelete: Cascade, onUpdate: NoAction)
   roomId     String
-  user       User   @relation(fields: [userId], references: [id])
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
   userId     String
 
   @@map("mensagens")
 }
 
+model Relationship {
+  user   User   @relation("users", fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  userId String @unique
+  room   Room   @relation("rooms", fields: [roomId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  roomId String @unique
+
+  @@id([userId, roomId])
+}
+
 model Room {
-  id          String     @id
-  name        String     @unique
+  id          String         @id
+  name        String         @unique
   description String
   created_at  String
-  users       User[]
   mensagens   Mensagem[]
+  users       Relationship[] @relation("rooms")
 
   @@map("rooms")
 }

@@ -1,4 +1,4 @@
-import { AlreadyExistsError, InvalidCredentials, InvalidParamsError, NotFoundError } from '@/domain/errors';
+import { AlreadyExistsError, InvalidCredentials, InvalidParamsError, JoinGroupError, NotFoundError } from '@/domain/errors';
 import { mensagemCreate } from '@/domain/mensagem/protocols';
 import { Either } from '@/shared/error-handler/either';
 
@@ -36,7 +36,7 @@ export type TypeRoom = {
   }[];
 };
 
-type CreateRoomError = InvalidParamsError | AlreadyExistsError | NotFoundError;
+type CreateRoomError = InvalidParamsError | AlreadyExistsError | NotFoundError | JoinGroupError;
 
 export type ResponseBuildRoom = Either<InvalidParamsError, roomCreate>;
 export type ResponseRoom = Either<CreateRoomError, TypeRoom>;
