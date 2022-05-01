@@ -6,7 +6,5 @@ export namespace ICryptography {
   export type Input = {
     data: string;
   };
-  export type Output = {
-    data: string;
-  };
+  export type Output = string;
 }
