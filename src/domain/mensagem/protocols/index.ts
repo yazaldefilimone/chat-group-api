@@ -15,8 +15,7 @@ export type mensagemCreate = {
 };
 export type TypeMensagem = {
   id: string;
-  name: string;
-  description: string;
+  content: string;
   created_at: string;
   roomId: string;
   userId: string;
