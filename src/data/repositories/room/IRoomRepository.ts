@@ -1,12 +1,12 @@
-import { roomRepo } from './protocols';
+import { roomRepo, roomRepoAll } from './protocols';
 
 export interface IRoomRepository {
-  add: (data: IRoomRepository.Input) => IRoomRepository.Output<roomRepo>;
-  findByName: ({ name }: { name: string }) => IRoomRepository.Output<roomRepo | null>;
-  findByNames: ({ name }: { name: string }) => IRoomRepository.Output<roomRepo[] | null>;
-  findById: ({ id }: { id: string }) => IRoomRepository.Output<roomRepo | null>;
+  add: (data: IRoomRepository.Input) => IRoomRepository.Output<Omit<roomRepoAll, 'userId'>>;
+  findByName: ({ name }: { name: string }) => IRoomRepository.Output<Omit<roomRepo, 'userId'> | null>;
+  findByNames: ({ name }: { name: string }) => IRoomRepository.Output<Omit<roomRepo, 'userId'>[] | null>;
+  findById: ({ id }: { id: string }) => IRoomRepository.Output<Omit<roomRepo, 'userId'> | null>;
   delete: ({ id }: { id: string }) => IRoomRepository.Output<void>;
-  findAll: () => IRoomRepository.Output<roomRepo[]>;
+  findAll: () => IRoomRepository.Output<Omit<roomRepo, 'userId'>[]>;
 }
 
 export namespace IRoomRepository {

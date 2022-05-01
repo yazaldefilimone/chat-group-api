@@ -1,5 +1,5 @@
 import { IRoomRepository } from '@/data/repositories/room';
-import { roomRepo } from '@/data/repositories/room/protocols';
+import { roomRepo, roomRepoAll } from '@/data/repositories/room/protocols';
 import { PrismaClient } from '@prisma/client';
 import { prismaClient } from '../settings';
 
@@ -8,9 +8,13 @@ export class PrismaRoomRepository implements IRoomRepository {
   constructor() {
     this.prismaClient = prismaClient;
   }
-  async add(data: roomRepo): IRoomRepository.Output<roomRepo> {
+  async add(data: IRoomRepository.Input): IRoomRepository.Output<roomRepoAll> {
     const room = await this.prismaClient.room.create({
       data,
+      include: {
+        mensagens: true,
+        users: true,
+      },
     });
 
     return room;
@@ -33,6 +37,10 @@ export class PrismaRoomRepository implements IRoomRepository {
   async findById({ id }: { id: string }): IRoomRepository.Output<roomRepo | null> {
     const isUser = await this.prismaClient.room.findFirst({
       where: { id },
+      include: {
+        users: true,
+        mensagens: true,
+      },
     });
 
     return isUser;
@@ -44,7 +52,7 @@ export class PrismaRoomRepository implements IRoomRepository {
     });
   }
   async findAll(): IRoomRepository.Output<roomRepo[]> {
-    const users = await this.prismaClient.room.findMany();
+    const users = await this.prismaClient.room.findMany({});
     return users;
   }
 }

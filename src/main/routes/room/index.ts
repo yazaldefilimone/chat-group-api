@@ -3,5 +3,5 @@ import { authUserJwtMiddleware } from '@/main/routes/middlewares';
 import { Router } from 'express';
 
 const roomRoutes = Router();
-roomRoutes.get('/room', authUserJwtMiddleware, createRoomFactory);
+roomRoutes.post('/room', authUserJwtMiddleware, createRoomFactory);
 export { roomRoutes };

@@ -16,10 +16,22 @@ model User {
   email      String     @unique
   password   String
   created_at String
-  rooms      Room[]
   mensagens  Mensagem[]
+  rooms      Room[]
 
   @@map("users")
+}
+
+model Mensagem {
+  id         String @id
+  content    String
+  created_at String
+  Room       Room   @relation(fields: [roomId], references: [id])
+  roomId     String
+  user       User   @relation(fields: [userId], references: [id])
+  userId     String
+
+  @@map("mensagens")
 }
 
 model Room {
@@ -27,21 +39,8 @@ model Room {
   name        String     @unique
   description String
   created_at  String
+  users       User[]
   mensagens   Mensagem[]
-  user        User       @relation(fields: [userId], references: [id])
-  userId      String
 
   @@map("rooms")
-}
-
-model Mensagem {
-  id         String @id
-  content    String
-  created_at String
-  room       Room   @relation(fields: [roomId], references: [id])
-  roomId     String
-  user       User   @relation(fields: [userId], references: [id])
-  userId     String
-
-  @@map("mensagens")
 }

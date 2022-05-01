@@ -26,7 +26,7 @@ export class LoginUserUseCase implements ILoginUserUseCase {
     const isValidPassword = await this.encoder.decode({ value: data.password, hash: user.password });
 
     if (!isValidPassword) return left(new InvalidCredentials('password'));
-    const token = signToken({ userId: user.id });
+    const token = signToken({ id: user.id });
     return right({
       user: {
         id: user.id,

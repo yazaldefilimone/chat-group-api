@@ -20,11 +20,23 @@ export type roomCreate = {
   id: string;
   name: string;
   description: string;
-  userId: string;
   created_at: string;
+};
+export type TypeRoom = {
+  id: string;
+  name: string;
+  description: string;
+  created_at: string;
+  users: {
+    id: string;
+    name: string;
+    email: string;
+    created_at: string;
+  }[];
+  mensagens: any[];
 };
 
 type CreateRoomError = InvalidParamsError | AlreadyExistsError | NotFoundError;
 
 export type ResponseBuildRoom = Either<InvalidParamsError, roomCreate>;
-export type ResponseRoom = Either<CreateRoomError, roomCreate>;
+export type ResponseRoom = Either<CreateRoomError, TypeRoom>;

@@ -10,8 +10,8 @@ export class CreateRoomUseCase implements ICreateRoomUseCase {
     this.roomRepository = roomRepository;
   }
 
-  async perform(data: ICreateRoomUseCase.Input): ICreateRoomUseCase.Output {
-    const build = new Room().build(data);
+  async perform({ name, description, userId }: ICreateRoomUseCase.Input): ICreateRoomUseCase.Output {
+    const build = new Room().build({ name, description });
     if (build.isLeft()) return left(build.value);
 
     const existsRoom = await this.roomRepository.findByName({ name: build.value.name });

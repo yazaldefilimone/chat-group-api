@@ -11,6 +11,9 @@ export class PrismaUserRepository implements IUserRepository {
   async add(data: userRepo): IUserRepository.Output<userRepo> {
     const user = await this.prismaClient.user.create({
       data,
+      include: {
+        mensagens: true,
+      },
     });
 
     return user;
@@ -18,6 +21,9 @@ export class PrismaUserRepository implements IUserRepository {
   async findByName({ name }: { name: string }): IUserRepository.Output<userRepo[] | null> {
     const isUser = await this.prismaClient.user.findMany({
       where: { name },
+      include: {
+        mensagens: true,
+      },
     });
 
     return isUser;
