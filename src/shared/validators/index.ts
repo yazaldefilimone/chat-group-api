@@ -17,8 +17,18 @@ const passwordSchema = Joi.object({
   password: Joi.string().required().regex(new RegExp(passwordRegex)).min(8).max(30),
 });
 const descriptionSchema = Joi.object({
-  description: Joi.string().required().min(0).max(200),
+  description: Joi.string().required().min(0).max(1000),
 });
+
+const mensagemContentSchema = Joi.object({
+  content: Joi.string().required().min(1),
+});
+
+export function isValidContent(content: string): boolean {
+  if (!content) return false;
+  const result = mensagemContentSchema.validate({ content });
+  return result.error ? false : true;
+}
 
 export function isValidEmail(email: string): boolean {
   if (!email) return false;
